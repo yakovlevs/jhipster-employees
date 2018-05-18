@@ -1,0 +1,51 @@
+entity Department {
+    deptName String required
+}
+
+entity DepartmentManager {
+    fromDate Instant required
+    toDate Instant required
+}
+
+entity DepartmentEmployee {
+    fromDate Instant required
+    toDate Instant required
+}
+
+enum Gender {
+    MALE, FEMALE
+}
+  
+entity Employee {
+    birthDate Instant required
+    firstName String required
+    lastName String required
+    gender Gender required
+    hireDate Instant required
+}
+
+entity Salary {
+    salary Integer required
+    fromDate Instant required    
+    toDate Instant required
+}
+
+entity Title {
+    title String required
+    fromDate Instant required     
+    toDate Instant required
+}
+
+relationship OneToMany { 
+	Employee{salaries} to Salary    
+}
+
+relationship ManyToOne { 	
+    Title{employee} to Employee 
+    DepartmentManager{employee} to Employee 
+    DepartmentManager{department} to Department 
+    DepartmentEmployee{employee} to Employee
+    DepartmentEmployee{department} to Department 
+}
+
+
