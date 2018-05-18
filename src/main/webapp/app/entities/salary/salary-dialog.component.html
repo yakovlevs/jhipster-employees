@@ -1,0 +1,81 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySalaryLabel">Create or edit a Salary</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!salary.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="salary.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_salary">Salary</label>
+            <input type="number" class="form-control" name="salary" id="field_salary"
+                [(ngModel)]="salary.salary" required/>
+            <div [hidden]="!(editForm.controls.salary?.dirty && editForm.controls.salary?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.salary?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.salary?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fromDate">From Date</label>
+            <div class="d-flex">
+                <input id="field_fromDate" type="datetime-local" class="form-control" name="fromDate" [(ngModel)]="salary.fromDate"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.fromDate?.dirty && editForm.controls.fromDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fromDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.fromDate?.errors?.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_toDate">To Date</label>
+            <div class="d-flex">
+                <input id="field_toDate" type="datetime-local" class="form-control" name="toDate" [(ngModel)]="salary.toDate"
+                required/>
+            </div>
+            <div [hidden]="!(editForm.controls.toDate?.dirty && editForm.controls.toDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.toDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.toDate?.errors?.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_employee">Employee</label>
+            <select class="form-control" id="field_employee" name="employee" [(ngModel)]="salary.employee" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="employeeOption.id === salary.employee?.id ? salary.employee : employeeOption" *ngFor="let employeeOption of employees; trackBy: trackEmployeeById">{{employeeOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -5,6 +5,16 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133949_added_entity_Department.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133950_added_entity_DepartmentManager.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133951_added_entity_DepartmentEmployee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133952_added_entity_Employee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133953_added_entity_Salary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133954_added_entity_Title.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20180518133950_added_entity_constraints_DepartmentManager.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133951_added_entity_constraints_DepartmentEmployee.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133953_added_entity_constraints_Salary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180518133954_added_entity_constraints_Title.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

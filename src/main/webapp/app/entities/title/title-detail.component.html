@@ -1,0 +1,40 @@
+
+<div *ngIf="title">
+    <h2><span>Title</span> {{title.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{title.title}}</span>
+        </dd>
+        <dt><span>From Date</span></dt>
+        <dd>
+            <span>{{title.fromDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>To Date</span></dt>
+        <dd>
+            <span>{{title.toDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Employee</span></dt>
+        <dd>
+            <div *ngIf="title.employee">
+                <a [routerLink]="['/employee', title.employee?.id]">{{title.employee?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'title/'+ title.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

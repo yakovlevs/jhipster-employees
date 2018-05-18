@@ -1,0 +1,42 @@
+
+<div *ngIf="departmentEmployee">
+    <h2><span>Department Employee</span> {{departmentEmployee.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>From Date</span></dt>
+        <dd>
+            <span>{{departmentEmployee.fromDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>To Date</span></dt>
+        <dd>
+            <span>{{departmentEmployee.toDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Employee</span></dt>
+        <dd>
+            <div *ngIf="departmentEmployee.employee">
+                <a [routerLink]="['/employee', departmentEmployee.employee?.id]">{{departmentEmployee.employee?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Department</span></dt>
+        <dd>
+            <div *ngIf="departmentEmployee.department">
+                <a [routerLink]="['/department', departmentEmployee.department?.id]">{{departmentEmployee.department?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'department-employee/'+ departmentEmployee.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

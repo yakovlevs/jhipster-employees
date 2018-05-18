@@ -1,0 +1,42 @@
+
+<div *ngIf="departmentManager">
+    <h2><span>Department Manager</span> {{departmentManager.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>From Date</span></dt>
+        <dd>
+            <span>{{departmentManager.fromDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>To Date</span></dt>
+        <dd>
+            <span>{{departmentManager.toDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Employee</span></dt>
+        <dd>
+            <div *ngIf="departmentManager.employee">
+                <a [routerLink]="['/employee', departmentManager.employee?.id]">{{departmentManager.employee?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Department</span></dt>
+        <dd>
+            <div *ngIf="departmentManager.department">
+                <a [routerLink]="['/department', departmentManager.department?.id]">{{departmentManager.department?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'department-manager/'+ departmentManager.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
